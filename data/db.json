@@ -1,0 +1,25 @@
+{
+    "paintings": [
+        {
+            "id": "1",
+            "title": "The Starry Night",
+            "artist": "Vincent van Gogh",
+            "year": "1889",
+            "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg"
+        },
+        {
+            "id": "2",
+            "title": "The Night Cafe",
+            "artist": "Vincent van Gogh",
+            "year": "1888",
+            "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg"
+        },
+        {
+            "id": "3",
+            "title": "The Potato Eaters",
+            "artist": "Vincent van Gogh",
+            "year": "1885",
+            "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg"
+        }
+    ]
+}

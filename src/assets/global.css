@@ -1,0 +1,18 @@
+/* variables */
+:root {
+  --light-gray: #E8E7E8;
+}
+
+/* reset css */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
