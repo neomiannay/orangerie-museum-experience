@@ -21,6 +21,11 @@ const routes = [
     component: () => import('../views/QuestionView.vue')
   },
   {
+    path: '/map',
+    name: 'map',
+    component: () => import('../views/MapView.vue')
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'not-found',
     component: NotFound
