@@ -7,12 +7,14 @@ specifiers:
   vite: ^4.0.0
   vue: ^3.2.45
   vue-router: '4'
+  vue3-mobile-detection: ^1.0.5
   vue3-qrcode-reader: ^0.0.1
 
 dependencies:
   json-server: 0.17.1
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
+  vue3-mobile-detection: 1.0.5
   vue3-qrcode-reader: 0.0.1
 
 devDependencies:
@@ -833,6 +835,10 @@ packages:
       is-extglob: 2.1.1
     dev: true
 
+  /is-mobile/2.2.2:
+    resolution: {integrity: sha512-wW/SXnYJkTjs++tVK5b6kVITZpAZPtUrt9SF80vvxGiF/Oywal+COk1jlRkiVq15RFNEQKQY31TkV24/1T5cVg==}
+    dev: false
+
   /is-number/7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
@@ -1358,6 +1364,13 @@ packages:
       '@vue/runtime-dom': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
+
+  /vue3-mobile-detection/1.0.5:
+    resolution: {integrity: sha512-Zbr7lvmqYNfO5dnnwYedQSxfOnCK1oakPGWkZtBaLz3uqcF3aREl1PL1iEkqf9tOuogsJ9iCX91igQKjv06aFg==}
+    dependencies:
+      is-mobile: 2.2.2
+      vue: 3.2.45
+    dev: false
 
   /vue3-qrcode-reader/0.0.1:
     resolution: {integrity: sha512-rTZRO2WiBrGRT6pYGMkySNMnEwD9sVlzl9kwPxQ4C0n7I4SXVu60eq8ZQHQTMJAbDTTkbuuW/5reSf+TYFJ5pQ==}
