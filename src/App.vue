@@ -3,28 +3,21 @@
     <router-link to="/">HomeView</router-link> |
     <router-link :to="{ name: 'painting', params: { id: '1'} }">AboutView</router-link>
   </nav> -->
-  <router-view/>
+  <router-view v-if="isMobile()"/>
+  <div v-else>T'es pas sur ton tel mon reuf</div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { useMobileDetection } from "vue3-mobile-detection";
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  setup() {
+    const { isMobile } = useMobileDetection();
+    return { isMobile };
   }
-}
+};
+</script>
+
+<style lang="scss">
+
 </style>
