@@ -75,9 +75,16 @@ body {
     letter-spacing: 0.1em;
   }
 
-  .blue-p {
-    font-family: "Montserrat";
+  p {
+    font-family: Montserrat;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
+
+    &.secondary {
+      font-family: "Montserrat";
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
   }
 }
