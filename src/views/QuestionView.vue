@@ -28,7 +28,7 @@
 
   <Transition name="bounce">
     <template v-if="show">
-      <QRCodeScanner @close="toggleScanner" />
+      <QRCodeScanner @close="toggleScanner" :id="id"/>
     </template>
   </Transition>
 </template>
