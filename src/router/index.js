@@ -26,6 +26,12 @@ const routes = [
     props: true
   },
   {
+    path: '/polaroid/:id',
+    name: 'polaroid',
+    component: () => import('../views/PolaroidView.vue'),
+    props: true
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'not-found',
     component: NotFound
