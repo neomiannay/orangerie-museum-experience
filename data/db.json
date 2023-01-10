@@ -2,23 +2,65 @@
     "paintings": [
         {
             "id": "1",
-            "title": "The Starry Night",
-            "artist": "Vincent van Gogh",
+            "title": "La Fiancée",
+            "artist": "Chaïm Soutine",
             "year": "1889",
             "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg"
         },
         {
             "id": "2",
-            "title": "The Night Cafe",
-            "artist": "Vincent van Gogh",
+            "title": "La Carriole du Père Junier",
+            "artist": "Henry Rousseau dit \"Le Douanier\"",
             "year": "1888",
             "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg"
         },
         {
             "id": "3",
-            "title": "The Potato Eaters",
-            "artist": "Vincent van Gogh",
+            "title": "Le Joueur de Mandoline",
+            "artist": "André Derain",
             "year": "1885",
+            "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg"
+        },
+        {
+            "id": "4",
+            "title": "Danseuses espagnoles",
+            "artist": "Marie Laurencin",
+            "year": "1910",
+            "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg"
+        },
+        {
+            "id": "5",
+            "title": "Pommes et biscuits",
+            "artist": "Paul Cézanne",
+            "year": "1890",
+            "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg"
+        },
+        {
+            "id": "6",
+            "title": "Claude Renoir en clown",
+            "artist": "Pierre-Auguste Renoir",
+            "year": "1881",
+            "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg"
+        },
+        {
+            "id": "7",
+            "title": "Bouquet dans une loge",
+            "artist": "Pierre-Auguste Renoir",
+            "year": "1881",
+            "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg"
+        },
+        {
+            "id": "8",
+            "title": "Paul Guillaume, Novo Pilota",
+            "artist": "Amedeo Modigliani",
+            "year": "1917",
+            "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg"
+        },
+        {
+            "id": "9",
+            "title": "Les Nymphéas",
+            "artist": "Claude Monet",
+            "year": "1906",
             "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg"
         }
     ]

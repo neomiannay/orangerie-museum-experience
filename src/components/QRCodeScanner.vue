@@ -1,11 +1,24 @@
 <template>
-  <div class="backdrop" @click.self="closeScanner">
-    <div class="scan-container">
-      <qrcode-stream @decode="onDecode" @init="onInit">
-        <p class="validation-failure">{{ error }}</p>
-      </qrcode-stream>
-      <!-- <p class="decode-result">Last result: <b>{{ decodedString }}</b></p> -->
-    </div>
+  <div class="scan">
+    <button class="scan__exit" @click.self="closeScanner"></button>
+    <qrcode-stream @decode="onDecode" @init="onInit">
+      <Transition name="bounce">
+        <template v-if="this.error == true">
+          <div class="response">
+            <img src="media/retry.png" alt="error" class="response__img" />
+          </div>
+        </template>
+      </Transition>
+
+      <Transition name="bounce">
+        <template v-if="this.error == false">
+          <div class="response">
+            <img src="media/gg.png" alt="scan" class="response__img" />
+          </div>
+        </template>
+      </Transition>
+
+    </qrcode-stream>
   </div>
 </template>
 
@@ -18,7 +31,7 @@ export default {
 
   data() {
     return {
-      error: "",
+      error: null,
       decodedString: "",
     };
   },
@@ -53,19 +66,24 @@ export default {
     },
 
     async onDecode(decodedString) {
+      this.error = null;
       this.decodedString = decodedString;
 
       if (this.decodedString == "http://en.m.wikipedia.org") {
-        window.location.replace(decodedString);
-      } else {
-        this.error = "Wrong painting. Try again!";
+        this.error = false;
         setTimeout(() => {
-          this.error = "";
+          window.location.replace(decodedString);
         }, 2000);
+      } else {
+        this.error = true;
+        setTimeout(() => {
+          this.error = null;
+        }, 1500);
       }
     },
 
     closeScanner() {
+      this.error = null;
       this.$emit("close");
     },
 
@@ -78,54 +96,46 @@ export default {
 };
 </script>
 
-<style scoped>
-.backdrop {
+<style scoped lang="scss">
+@use '../assets/transitions/bounce.scss'; 
+
+.scan {
+  position: absolute;
   top: 0;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
-}
-
-.scan-container {
-  width: 90%;
-  max-width: 400px;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: #000;
+
+  &__exit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    margin: 24px;
+    background: url("/media/icons/close.png") no-repeat center center;
+    background-size: 48px;
+    cursor: pointer;
+  }
 }
 
-.qrcode-stream-wrapper {
-  position: relative;
-  height: 60%;
-}
-
-.validation-success,
-.validation-failure,
-.validation-pending {
-  position: absolute;
-  top: 0;
-  left: 0;
+.response {
   width: 100%;
   height: 100%;
-  z-index: 10;
-
-  /* background-color: rgba(255, 255, 255, 0.8); */
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.4rem;
-  padding: 10px;
-
   display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
-}
-.validation-success {
-  color: green;
-}
-.validation-failure {
-  color: red;
+  align-items: center;
+
+  &__img {
+    width: 80%;
+    z-index: 10;
+  }
 }
 </style>

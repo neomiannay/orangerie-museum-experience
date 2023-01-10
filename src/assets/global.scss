@@ -55,36 +55,36 @@ body {
 #app {
   font-family: "Montserrat";
   font-weight: 400;
-  background-image: url("/media/background-img.png");
+  background-image: url("/media/bg/background-img.png");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
   color: black;
+}
 
-  h1 {
-    font-family: "Peabecki";
-    font-size: 32px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-  }
+h1 {
+  font-family: "Peabecki";
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
 
-  h2 {
-    font-family: "Peabecki";
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-  }
+h2 {
+  font-family: "Peabecki";
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
 
-  p {
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 400;
+p {
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
 
-    &.secondary {
-      font-family: "Montserrat";
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--white);
-    }
+  &.secondary {
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
   }
 }
