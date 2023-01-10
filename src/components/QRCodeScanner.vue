@@ -120,7 +120,7 @@ export default {
     width: 48px;
     height: 48px;
     margin: 24px;
-    background: url("media/icon-close.png") no-repeat center center;
+    background: url("/media/icons/close.png") no-repeat center center;
     background-size: 48px;
     cursor: pointer;
   }

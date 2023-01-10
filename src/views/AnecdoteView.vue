@@ -5,13 +5,13 @@
         <div class="anecdote-text">
             <p>Derain can be seen as a multi-talented artist! He painted, drew and sculpted. He also made sets and costumes for theaters and ballets!</p>
             <p>He amazes by his practical spirit, he liked to repair cars, to practice music, to play the piano or the organ, to build airplane maquettes or to draw tarot cards... He was an amazing artist who liked to discover
-                <span>new things !<img src="/media/assets/scratch.svg" alt=""></span>
+                <span>new things !<img src="/media/doodles/scratch.svg" alt=""></span>
             </p>
         </div>
 
         <div class="artist-content">
-            <img class="artist-img" src="/media/derain.png" alt="Derain">
-            <img class="signature-img" src="/media/signature-derain.png" alt="Signature from Derain">
+            <img class="artist-img" :src="'/media/anecdote/' + id  +'/artist.png'" alt="Derain">
+            <img class="signature-img" :src="'/media/anecdote/' + id  +'/signature.png'" alt="Signature from Derain">
         </div>
     </div>
     <div v-else>

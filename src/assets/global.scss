@@ -76,16 +76,15 @@ h2 {
   letter-spacing: 0.1em;
 }
 
-  p {
-    font-family: Montserrat;
-    font-size: 15px;
-    font-weight: 400;
+p {
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
 
-    &.secondary {
-      font-family: "Montserrat";
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--white);
-    }
+  &.secondary {
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
   }
 }

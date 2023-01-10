@@ -1,36 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import PaintingDetails from '../views/painting/PaintingDetails.vue'
-import AnecdoteView from '../views/anecdote/AnecdoteView.vue'
 import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import('../views/HomeView.vue')
   },
   {
     path: '/anecdote/:id',
     name: 'anecdote',
-    component: AnecdoteView,
+    component: () => import('../views/AnecdoteView.vue'),
     props: true
   },
   {
-    path: '/painting/:id',
-    name: 'painting',
-    component: PaintingDetails,
-    props: true
-  },
-  {
-    path: '/question',
+    path: '/question/:id',
     name: 'question',
-    component: () => import('../views/QuestionView.vue')
+    component: () => import('../views/QuestionView.vue'),
+    props: true
   },
   {
-    path: '/map',
+    path: '/map/:id',
     name: 'map',
-    component: () => import('../views/MapView.vue')
+    component: () => import('../views/MapView.vue'),
+    props: true
   },
   {
     path: '/:catchAll(.*)',

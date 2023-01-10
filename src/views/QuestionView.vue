@@ -3,7 +3,7 @@
     <header>
       <div class="progression">
         <p class="progression__number">1/9</p>
-        <img src="/media/wife-hand.png" alt="" class="progression__img">
+        <img :src="'/media/anecdote/' + id + '/progression.png'" alt="" class="progression__img">
       </div>
       <button class="button-map"></button>
     </header>
@@ -37,11 +37,18 @@ export default {
   components: {
     QRCodeScanner,
   },
+  props: ['id'],
 
   data() {
     return {
       show: false,
+      painting: null
     };
+  },
+  mounted() {
+    fetch('http://localhost:3000/paintings/' + this.id)
+        .then(res => res.json())
+        .then(data => this.painting = data)
   },
 
   methods: {
@@ -70,7 +77,7 @@ header {
     width: 80px;
     height: 80px;
     margin: 20px;
-    background: url("/media/icon-map.png") no-repeat;
+    background: url("/media/icons/map.png") no-repeat;
     background-size: contain;
   }
 }
@@ -91,7 +98,7 @@ header {
     line-height: 132px;
     color: var(--white);
     margin-right: 20px;
-    background: url("media/progression-bg.png") no-repeat;
+    background: url("/media/bg/progression-bg.png") no-repeat;
     background-size: contain;
   }
 
@@ -116,7 +123,7 @@ header {
     color: var(--white);
     z-index: 1;
     text-align: center ;
-    background: url("media/clue-title-bg.png") no-repeat center;
+    background: url("/media/bg/clue-title-bg.png") no-repeat center;
     background-size: contain;
     grid-row: 1 / 4;
   }
@@ -133,7 +140,7 @@ header {
     height: 140px;
     line-height: 140px;
     text-align: center ;
-    background: url("media/clue-text-bg.png") no-repeat center;
+    background: url("/media/bg/clue-text-bg.png") no-repeat center;
     background-size: contain;
   }
 
@@ -157,7 +164,7 @@ header {
   .button-scan {
     width: 80px;
     height: 80px;
-    background: url("media/icon-scan.png") no-repeat center center;
+    background: url("/media/icons/scan.png") no-repeat center center;
     background-size: 80px;
     cursor: pointer;
   }

@@ -2,10 +2,10 @@
     <div class="headerContainer">
         <div class="titleContainer">
             <h1 class="title">{{ title }}</h1>
-        <img class="scribble" src="/media/lines/Scribble.svg" alt="scribble">
+        <img class="scribble" src="/media/doodles/scribble.svg" alt="scribble">
         </div>
-        <img class="line" src="/media/lines/Line.svg" alt="">
-        <img class="grid" src="/media/items/Grid.png" alt="grid">
+        <img class="line" src="/media/doodles/line.svg" alt="">
+        <img class="grid" src="/media/bg/grid.png" alt="grid">
     </div>
 </template>
 

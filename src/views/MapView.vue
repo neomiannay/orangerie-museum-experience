@@ -1,13 +1,13 @@
 <template>
     <div class="MapViewContainer">
         <Header title="The map"></Header>
-        <img class="close" src="/media/icons/icon-close.png" alt="close">
-        <img class="close-text" src="/media/items/Close.png" alt="close">
+        <img class="close" src="/media/icons/close.png" alt="close">
+        <img class="close-text" src="/media/map/close.png" alt="close">
         <div class="floor-number-wrapper">
-            <img class="floor-number" src="/media/items/FloorNumber.png" alt="scribble">
-            <img class="circle" src="/media/lines/Circles.svg" alt="line">
+            <img class="floor-number" src="/media/map/floorNumber.png" alt="scribble">
+            <img class="circle" src="/media/doodles/circles.svg" alt="line">
         </div>
-        <img class="map" src="/media/items/Maps.png" alt="map">
+        <img class="map" src="/media/map/maps.png" alt="map">
     </div>
 </template>
   
@@ -16,6 +16,7 @@ import Header from "../components/Header.vue"
 
 export default {
     name: 'MapView',
+    props: ['id'],
     components: {Header}
 }
 </script>
