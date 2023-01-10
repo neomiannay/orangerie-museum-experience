@@ -5,7 +5,7 @@
       <Transition name="bounce">
         <template v-if="this.error == true">
           <div class="response">
-            <img src="media/retry.png" alt="error" class="response__img" />
+            <img src="/media/hands/retry.png" alt="error" class="response__img" />
           </div>
         </template>
       </Transition>
@@ -13,7 +13,7 @@
       <Transition name="bounce">
         <template v-if="this.error == false">
           <div class="response">
-            <img src="media/gg.png" alt="scan" class="response__img" />
+            <img src="/media/hands/gg.png" alt="scan" class="response__img" />
           </div>
         </template>
       </Transition>

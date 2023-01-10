@@ -58,8 +58,10 @@ body {
   background-image: url("/media/bg/background-img.png");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
+  // min-height: 100vh;
   color: black;
+  max-width: 480px;
+  margin: auto;
 }
 
 h1 {

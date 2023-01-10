@@ -2,7 +2,7 @@
   <div class="question">
     <header>
       <div class="progression">
-        <p class="progression__number">1/9</p>
+        <p class="progression__number">0{{ id }}/09</p>
         <img :src="'/media/anecdote/' + id + '/progression.png'" alt="" class="progression__img">
       </div>
       <button class="button-map"></button>

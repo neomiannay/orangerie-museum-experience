@@ -1,18 +1,19 @@
 <template>
     <div v-if="painting">
         <!-- header here -->
-        
-        <div class="anecdote-text">
-            <p>Derain can be seen as a multi-talented artist! He painted, drew and sculpted. He also made sets and costumes for theaters and ballets!</p>
-            <p>He amazes by his practical spirit, he liked to repair cars, to practice music, to play the piano or the organ, to build airplane maquettes or to draw tarot cards... He was an amazing artist who liked to discover
-                <span>new things !<img src="/media/doodles/scratch.svg" alt=""></span>
-            </p>
-        </div>
-
-        <div class="artist-content">
-            <img class="artist-img" :src="'/media/anecdote/' + id  +'/artist.png'" alt="Derain">
-            <img class="signature-img" :src="'/media/anecdote/' + id  +'/signature.png'" alt="Signature from Derain">
-        </div>
+        <section>
+            <Header title="Multi Talented"></Header>
+            <div class="anecdote-text">
+                <p>Derain can be seen as a multi-talented artist! He painted, drew and sculpted. He also made sets and costumes for theaters and ballets!</p>
+                <p>He amazes by his practical spirit, he liked to repair cars, to practice music, to play the piano or the organ, to build airplane maquettes or to draw tarot cards... He was an amazing artist who liked to discover
+                    <span>new things !<img src="/media/doodles/scratch.svg" alt=""></span>
+                </p>
+            </div>
+            <div class="artist-content">
+                <img class="artist-img" :src="'/media/anecdote/' + id  +'/artist.png'" alt="Derain">
+                <img class="signature-img" :src="'/media/anecdote/' + id  +'/signature.png'" alt="Signature from Derain">
+            </div>
+        </section>
     </div>
     <div v-else>
         <p>Loading...</p>
@@ -20,8 +21,11 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue"
+
 export default {
     props: ['id'],
+    components: {Header},
     data() {
         return {
             painting: null
@@ -37,15 +41,20 @@ export default {
 
 <style lang="scss">
 
+    section {
+        height: 100vh;
+    }
+
     .anecdote-text{
         margin: 0 32px;
+        transform: translateY(-10px);
 
         p{
             line-height: 1.5em;
             text-align: justify;
             
             &:nth-of-type(1){
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
 
             span {
@@ -63,13 +72,14 @@ export default {
     
     .artist-content {
         position: relative;
-        height: 100%;
+        height: calc(100vh - 257px);
 
         .artist-img {
-            position: relative;
+            position: absolute;
             z-index: 10;
             margin-left: auto;
-            transform: translateX(10px);
+            height: 100%;
+            /* transform: translateY(10px) scale(1.1); */
         }
         .signature-img {
             position: absolute;
