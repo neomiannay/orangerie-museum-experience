@@ -75,7 +75,7 @@ export default {
       if (this.decodedString == this.id) {
         this.error = false;
         setTimeout(() => {
-          router.replace({ name: "anecdote" });
+          router.replace({ name: "polaroid", params: { id: this.id } });
         }, 2000);
       } else {
         this.error = true;

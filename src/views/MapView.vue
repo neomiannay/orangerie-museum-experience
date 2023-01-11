@@ -1,7 +1,10 @@
 <template>
     <div class="MapViewContainer">
         <Header title="The map"></Header>
-        <img class="close" src="/media/icons/close.png" alt="close">
+
+        <router-link :to="'/start/' + nextPage">
+            <img class="close" src="/media/icons/close.png" alt="close">
+        </router-link>        
         <img class="close-text" src="/media/map/close.png" alt="close">
         <div class="floor-number-wrapper">
             <img class="floor-number" src="/media/map/floorNumber.png" alt="scribble">
@@ -20,7 +23,20 @@ import Header from "../components/Header.vue"
 export default {
     name: 'MapView',
     props: ['id'],
-    components: { Header }
+    components: { Header },
+    data() {
+        return {
+            nextPage: 0,
+        }
+    },
+    mounted() {
+        this.setPageNumber();
+    },
+    methods: {
+        setPageNumber() {
+            this.nextPage = parseInt(this.id)
+        }
+    }
 }
 </script>
 

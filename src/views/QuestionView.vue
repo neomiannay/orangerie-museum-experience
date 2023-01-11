@@ -31,6 +31,7 @@
 
 <script>
 import QRCodeScanner from "../components/QRCodeScanner.vue";
+import paintings from "../../data/db.json"
 
 export default {
   name: "QuestionView",
@@ -38,7 +39,6 @@ export default {
     QRCodeScanner,
   },
   props: ["id"],
-
   data() {
     return {
       show: false,
@@ -46,9 +46,9 @@ export default {
     };
   },
   mounted() {
-    fetch("http://localhost:3000/paintings/" + this.id)
-      .then((res) => res.json())
-      .then((data) => (this.painting = data));
+    if(paintings) {
+      this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+    }
   },
 
   methods: {

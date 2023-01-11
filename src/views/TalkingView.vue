@@ -31,20 +31,12 @@
           </p>
         </div>
 
-        <!-- if the current page is the anecdote's end page -->
-        <div class="bubble__text" v-if="pageType == 'end'">
-          <p
-            class="secondary"
-            v-for="txt in this.painting?.endText"
-            :key="txt.key"
-          >
-            {{ txt }}
-          </p>
-        </div>
-
           <!-- <button class="bubble__next"> -->
-        <router-link to="/question/{{ id }}" class="bubble__next">
+        <router-link v-if="pageType === 'intro'" :to="'/map/' + nextPage" class="bubble__next">
         </router-link>
+        <router-link v-else="pageType === 'start'" :to="'/question/' + nextPage" class="bubble__next">
+        </router-link>
+
 
           <!-- </button> -->
         <img
@@ -65,24 +57,36 @@
 </template>
 
 <script>
+import paintings from "../../data/db.json"
+
 export default {
-  props: ["id", "pageType"],
+  props: ['id', 'pageType'],
   data() {
     return {
+      nextPage: 0,
       painting: null,
     };
   },
   mounted() {
-    fetch("http://localhost:3000/paintings/" + this.id)
-      .then((res) => res.json())
-      .then((data) => (this.painting = data));
+    if(paintings) {
+      this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+    }
+
+    this.setPageNumber();
   },
 
-  // methods: {
-  //   debug() {
-  //     console.log(this.painting.startText);
-  //   },
-  // },
+  methods: {
+    debug() {
+      console.log(this.painting.startText);
+    },
+    setPageNumber() {
+      if(this.pageType === 'intro'){
+        this.nextPage = 1;
+      } else if(this.pageType === 'start') {
+        this.nextPage = this.id;
+      }
+    }
+  },
 };
 </script>
 

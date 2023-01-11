@@ -38,6 +38,11 @@ const routes = [
     props: true
   },
   {
+    path: '/final',
+    name: 'final',
+    component: () => import('../views/FinalView.vue'),
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'not-found',
     component: NotFound
