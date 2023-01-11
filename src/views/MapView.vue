@@ -7,7 +7,10 @@
             <img class="floor-number" src="/media/map/floorNumber.png" alt="scribble">
             <img class="circle" src="/media/doodles/circles.svg" alt="line">
         </div>
-        <img class="map" src="/media/map/maps.png" alt="map">
+        <div class="artworksContainer">
+            <h2>Artworks<br>0{{ id }}/09</h2>
+        </div>
+        <img class="map" :src="'/media/anecdote/' + id + '/map.png'" alt="map">
     </div>
 </template>
   
@@ -17,13 +20,12 @@ import Header from "../components/Header.vue"
 export default {
     name: 'MapView',
     props: ['id'],
-    components: {Header}
+    components: { Header }
 }
 </script>
 
 <style scoped>
-
-.MapViewContainer{
+.MapViewContainer {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -51,6 +53,7 @@ export default {
     top: calc(5% + 56px);
     right: 4%;
     width: 148px;
+    z-index: 2;
 }
 
 .floor-number-wrapper {
@@ -76,4 +79,10 @@ export default {
     width: 100px;
 }
 
+.artworksContainer {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: rotate(-20deg);
+}
 </style>
