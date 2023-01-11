@@ -1,9 +1,12 @@
 <template>
-    <div v-if="painting">
+    <!-- <div v-if="painting"> -->
+    <div>
         <!-- header here -->
-        <section class="letsgo">
+        <section id="topContent">
             <Header title="Multi Talented"></Header>
-            <div class="anecdote-text">
+            <div
+                class="anecdote-text"
+            >
                 <p>Derain can be seen as a multi-talented artist! He painted, drew and sculpted. He also made
                     sets and
                     costumes for theaters and ballets!</p>
@@ -27,21 +30,19 @@
             </router-link>
                 
         </section>
-        <section class="gsap-animation-container" id="sticky">
-            <div class="gsap-animation"></div>
+        <section class="container" id="container">
+            <canvas class="scroll-animation"></canvas>
         </section>
     </div>
-    <div v-else>
+    <!-- <div v-else>
         <p>Loading...</p>
-    </div>
+    </div> -->
 </template>
 
 <script>
 import Header from "../components/Header.vue"
 import paintings from "../../data/db.json"
 
-// let frame_count = 9,
-//     offset_value = 100;
 
 export default {
     props: ['id'],
@@ -58,11 +59,58 @@ export default {
             this.painting = paintings.paintings.find((painting) => painting.id === this.id);
         }
 
-    this.setPageNumber();
+        this.setPageNumber();
+        this.gsapAnimation();
     },
     methods: {
         setPageNumber() {
             this.nextPage = parseInt(this.id) + 1
+        },
+        gsapAnimation() {
+            
+            const container = document.documentElement;
+            const canvas = document.querySelector(".scroll-animation");
+            const topContent = document.getElementById("topContent");
+            const ctx = canvas.getContext("2d");
+
+            const currentFrame = index => (
+                `/media/anecdote/3/animation/bride${index.toString().padStart(3, '0')}.png`
+            )
+
+            const frameCount = 100
+
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            const img = new Image();
+            img.src = currentFrame(1)
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+
+            const preloadImages = () => {
+                for (let i = 1; i < frameCount; i++) {
+                    const img = new Image()
+                    img.src = currentFrame(i)
+                }
+            }
+            preloadImages()
+
+            const updateImage = index => {
+                img.src = currentFrame(index)
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+
+            window.addEventListener('scroll', () => {
+
+                const scrollTop = container.scrollTop;
+                const maxScrollTop = container.scrollHeight - window.innerHeight;
+                const scrollFraction = scrollTop / maxScrollTop;
+                const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
+
+                requestAnimationFrame(() => updateImage(frameIndex + 1))
+            });
+
+
         }
     }
 }
@@ -136,19 +184,18 @@ section {
     }
 }
 
-.gsap-animation-container {
-    height: 100vh;
+.container {
+    margin-top: 40vh;
+    height: 400vh;
     width: 100%;
+    position: relative;
 }
 
-.gsap-animation {
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 200px;
-    width: 100%;
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/doodle-sprite.png);
-    background-repeat: no-repeat;
-    background-position: 0 50%;
+.scroll-animation {
+    position: sticky;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    max-width: 100vw;
 }
 </style>
