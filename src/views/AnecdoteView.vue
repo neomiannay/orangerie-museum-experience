@@ -13,6 +13,14 @@
                 <img class="artist-img" :src="'/media/anecdote/' + id  +'/artist.png'" alt="Derain">
                 <img class="signature-img" :src="'/media/anecdote/' + id  +'/signature.png'" alt="Signature from Derain">
             </div>
+
+            <router-link v-if="nextPage < lastPage" :to="'/map/' + nextPage" class="bubble__next">
+                Next page
+            </router-link>
+            <router-link v-else :to="'/final'" class="bubble__next">
+                Last Page
+            </router-link>
+                
         </section>
     </div>
     <div v-else>
@@ -22,20 +30,30 @@
 
 <script>
 import Header from "../components/Header.vue"
+import paintings from "../../data/db.json"
 
 export default {
     props: ['id'],
     components: {Header},
     data() {
         return {
+            nextPage: 0,
+            lastPage: 4,
             painting: null
         }
     },
     mounted() {
-        fetch('http://localhost:3000/paintings/' + this.id)
-            .then(res => res.json())
-            .then(data => this.painting = data)
+        if(paintings) {
+            this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+        }
+
+    this.setPageNumber();
     },
+    methods: {
+        setPageNumber() {
+            this.nextPage = parseInt(this.id) + 1
+        }
+    }
 }
 </script>
 

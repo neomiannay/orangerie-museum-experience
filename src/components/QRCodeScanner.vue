@@ -24,10 +24,13 @@
 
 <script>
 import { QrcodeStream } from "vue3-qrcode-reader";
+import router from "../router";
 
 export default {
   name: "QRCodeScanner",
   components: { QrcodeStream },
+
+  props: ["id"],
 
   data() {
     return {
@@ -69,10 +72,10 @@ export default {
       this.error = null;
       this.decodedString = decodedString;
 
-      if (this.decodedString == "http://en.m.wikipedia.org") {
+      if (this.decodedString == this.id) {
         this.error = false;
         setTimeout(() => {
-          window.location.replace(decodedString);
+          router.replace({ name: "polaroid", params: { id: this.id } });
         }, 2000);
       } else {
         this.error = true;
