@@ -52,13 +52,16 @@ body {
   overflow-x: hidden;
 }
 
-#app {
-  font-family: "Montserrat";
-  font-weight: 400;
+html {
   background-image: url("/media/bg/background-img.png");
   background-repeat: no-repeat;
   background-size: cover;
-  // min-height: 100vh;
+  min-height: 100vh;
+}
+
+#app {
+  font-family: "Montserrat";
+  font-weight: 400;
   color: black;
   max-width: 480px;
   margin: auto;

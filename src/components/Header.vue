@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div class="headerContainer">
         <div class="titleContainer">
             <h1 class="title">{{ title }}</h1>
