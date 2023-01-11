@@ -3,17 +3,13 @@
     <div>
         <!-- header here -->
         <section id="topContent">
-            <Header title="Multi Talented"></Header>
+            <Header :title="this.painting?.anecdoteTitle"></Header>
             <div
                 class="anecdote-text"
             >
-                <p>Derain can be seen as a multi-talented artist! He painted, drew and sculpted. He also made
-                    sets and
-                    costumes for theaters and ballets!</p>
-                <p>He amazes by his practical spirit, he liked to repair cars, to practice music, to play the piano or
-                    the organ, to build airplane maquettes or to draw tarot cards... He was an amazing artist who liked
-                    to discover
-                    <span>new things !<img src="/media/doodles/scratch.svg" alt=""></span>
+                <p>{{ this.painting?.anecdote[0] }}</p>
+                <p>{{ this.painting?.anecdote[1] }}
+                    <span>{{ this.painting?.anecdote[2] }}<img src="/media/doodles/scratch.svg" alt=""></span>
                 </p>
             </div>
             <div class="artist-content">
@@ -21,17 +17,17 @@
                 <img class="signature-img" :src="'/media/anecdote/' + id + '/signature.png'"
                     alt="Signature from Derain">
             </div>
-
-            <router-link v-if="nextPage < lastPage" :to="'/map/' + nextPage" class="bubble__next">
-                Next page
-            </router-link>
-            <router-link v-else :to="'/final'" class="bubble__next">
-                Last Page
-            </router-link>
                 
         </section>
         <section class="container" id="container">
             <canvas class="scroll-animation"></canvas>
+
+            <router-link v-if="nextPage < lastPage" :to="'/map/' + nextPage" class="next-button">
+                Continue
+            </router-link>
+            <router-link v-else :to="'/final'" class="next-button">
+                Continue
+            </router-link>
         </section>
     </div>
     <!-- <div v-else>
@@ -108,6 +104,10 @@ export default {
                 const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
 
                 requestAnimationFrame(() => updateImage(frameIndex + 1))
+
+                // detect the end of the scroll
+                // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                // }
             });
 
 
@@ -116,7 +116,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 section {
     height: 100vh;
     width: 100vw;
@@ -197,5 +197,22 @@ section {
     left: 0;
     min-height: 100vh;
     max-width: 100vw;
+}
+
+.next-button {
+    font-family: 'Peabecki';
+    color: #000;
+    font-size: 2rem;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 352px;
+    height: 144px;
+    line-height: 144px;
+    background: url("/media/bg/button-paper-bg.png") no-repeat center;
+    background-size: cover;
 }
 </style>
