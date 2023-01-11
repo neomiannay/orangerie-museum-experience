@@ -1,11 +1,14 @@
 <template>
     <div class="MapViewContainer">
         <Header title="The map"></Header>
-        <img class="close" src="/media/icons/icon-close.png" alt="close">
-        <img class="close-text" src="/media/items/Close.png" alt="close">
+
+        <router-link :to="'/start/' + nextPage">
+            <img class="close" src="/media/icons/close.png" alt="close">
+        </router-link>        
+        <img class="close-text" src="/media/map/close.png" alt="close">
         <div class="floor-number-wrapper">
-            <img class="floor-number" src="/media/items/FloorNumber.png" alt="scribble">
-            <img class="circle" src="/media/lines/Circles.svg" alt="line">
+            <img class="floor-number" src="/media/map/floorNumber.png" alt="scribble">
+            <img class="circle" src="/media/doodles/circles.svg" alt="line">
         </div>
         <div class="artworksContainer">
             <h2>Artworks<br>0{{ id }}/09</h2>
@@ -20,7 +23,20 @@ import Header from "../components/Header.vue"
 export default {
     name: 'MapView',
     props: ['id'],
-    components: { Header }
+    components: { Header },
+    data() {
+        return {
+            nextPage: 0,
+        }
+    },
+    mounted() {
+        this.setPageNumber();
+    },
+    methods: {
+        setPageNumber() {
+            this.nextPage = parseInt(this.id)
+        }
+    }
 }
 </script>
 
