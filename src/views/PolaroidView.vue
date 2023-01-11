@@ -18,6 +18,10 @@
         <div id="log"></div>
         <div id="test"></div>
 
+        <router-link :to="'/anecdote/' + nextPage">
+            Continue
+        </router-link>  
+
     </div>
     <!-- <div v-else>
         <p>Loading...</p>
@@ -29,20 +33,22 @@ export default {
     props: ['id'],
     data() {
         return {
+            nextPage: 0,
             painting: null
         }
     },
     mounted() {
-        // fetch('http://localhost:3000/paintings/' + this.id)
-        //     .then(res => res.json())
-        //     .then(data => this.painting = data)
-        // const polaroid = document.querySelector('.polaroid img');
-        // polaroid.style.animation = 'goDown 3s ease-in-out forwards';
+        this.setPageNumber();
     },
     animation() {
         const polaroid = document.querySelector('.polaroid img');
         polaroid.style.animation = 'goDown 3s ease-in-out forwards';
     },
+    methods: {
+        setPageNumber() {
+            this.nextPage = parseInt(this.id)
+        }
+    }
 }
 </script>
 

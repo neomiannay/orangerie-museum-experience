@@ -5,21 +5,33 @@
             "title": "La Fiancée",
             "artist": "Chaïm Soutine",
             "year": "1889",
-            "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg"
+            "image": "http://www.vangoghgallery.com/paintings/starry-night.jpg",
+            "startText": [
+                "Did you find your way? So let's start our journey together!", 
+                "First, let's try to find our future bride!"
+            ],
+            "clue": "Our bride is dressed in white.",
+            "endText": [
+                "Good job! There's only one more picture to find before the bride can finally go to the church!", 
+                "For this one, you'll need to go to level 0, which is the same level you came from.", 
+                "Tap on the map to find your way!"
+            ]
         },
         {
             "id": "2",
             "title": "La Carriole du Père Junier",
             "artist": "Henry Rousseau dit \"Le Douanier\"",
             "year": "1888",
-            "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg"
+            "image": "http://www.vangoghgallery.com/paintings/night-cafe.jpg",
+            "clue": "Two black dogs surround it."
         },
         {
             "id": "3",
             "title": "Le Joueur de Mandoline",
             "artist": "André Derain",
             "year": "1885",
-            "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg"
+            "image": "http://www.vangoghgallery.com/paintings/potato-eaters.jpg",
+            "clue": "His fingers strum the strings."
         },
         {
             "id": "4",

@@ -8,6 +8,12 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
+    path: '/:pageType/:id?',
+    name: 'talking',
+    component: () => import('../views/TalkingView.vue'),
+    props: true
+  },
+  {
     path: '/anecdote/:id',
     name: 'anecdote',
     component: () => import('../views/AnecdoteView.vue'),
@@ -30,6 +36,11 @@ const routes = [
     name: 'polaroid',
     component: () => import('../views/PolaroidView.vue'),
     props: true
+  },
+  {
+    path: '/final',
+    name: 'final',
+    component: () => import('../views/FinalView.vue'),
   },
   {
     path: '/:catchAll(.*)',

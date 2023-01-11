@@ -11,8 +11,8 @@
     <div class="clue">
       <h2 class="clue__title">Clue #1</h2>
       <img src="/media/doodles/spiral.svg" alt="" class="clue__spiral" />
-      <p class="clue__text">Our bride is dressed in white.</p>
-      <img src="/media/doodles/traits.svg" alt="" class="clue__traits">
+      <p class="clue__text">{{ this.painting?.clue}}</p>
+      <img src="/media/doodles/traits.svg" alt="" class="clue__traits" />
     </div>
 
     <div class="footer">
@@ -24,31 +24,31 @@
 
   <Transition name="bounce">
     <template v-if="show">
-      <QRCodeScanner @close="toggleScanner"/>
+      <QRCodeScanner @close="toggleScanner" :id="id"/>
     </template>
   </Transition>
 </template>
 
 <script>
 import QRCodeScanner from "../components/QRCodeScanner.vue";
+import paintings from "../../data/db.json"
 
 export default {
   name: "QuestionView",
   components: {
     QRCodeScanner,
   },
-  props: ['id'],
-
+  props: ["id"],
   data() {
     return {
       show: false,
-      painting: null
+      painting: null,
     };
   },
   mounted() {
-    fetch('http://localhost:3000/paintings/' + this.id)
-        .then(res => res.json())
-        .then(data => this.painting = data)
+    if(paintings) {
+      this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+    }
   },
 
   methods: {
@@ -60,13 +60,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use '../assets/transitions/bounce.scss'; 
+@use "../assets/transitions/bounce.scss";
 
 .question {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: absolute;
 }
 
 header {
@@ -122,7 +124,7 @@ header {
     line-height: 64px;
     color: var(--white);
     z-index: 1;
-    text-align: center ;
+    text-align: center;
     background: url("/media/bg/clue-title-bg.png") no-repeat center;
     background-size: contain;
     grid-row: 1 / 4;
@@ -139,7 +141,7 @@ header {
     width: 340px;
     height: 140px;
     line-height: 140px;
-    text-align: center ;
+    text-align: center;
     background: url("/media/bg/clue-text-bg.png") no-repeat center;
     background-size: contain;
   }
@@ -169,5 +171,4 @@ header {
     cursor: pointer;
   }
 }
-
 </style>
