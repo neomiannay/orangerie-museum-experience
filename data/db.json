@@ -39,8 +39,10 @@
             "title": "Le Joueur de Mandoline",
             "artist": "André Derain",
             "startText": [
-                "Did you find your way? So let's start our journey together!", 
-                "First, let's try to find our future bride!"
+                "Well done!",
+                "The bride can now ride in the carriage!",
+                "But it's not over yet...",
+                "For the wedding to be perfect, we need to find a way to make it a little more fun!"
             ],
             "clue": "His fingers strum the strings.",
             "anecdoteTitle": "Multi-talented",

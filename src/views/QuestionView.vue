@@ -141,35 +141,35 @@ header {
 
 .clue {
   display: grid;
-  grid-template-rows: repeat(10, 20px);
+  grid-template-rows: repeat(4, 20px);
   grid-template-columns: 100%;
   justify-items: center;
   align-items: center;
 
   &__title {
-    width: 140px;
-    height: 64px;
-    line-height: 64px;
-    color: var(--white);
+    width: 164px;
+    height: 72px;
+    line-height: 72px;
+    font-size: 1rem;
     z-index: 1;
     text-align: center;
     background: url("/media/bg/clue-title-bg.png") no-repeat center;
     background-size: contain;
-    grid-row: 1 / 4;
   }
 
   &__spiral {
     position: relative;
-    top: -20px;
-    left: 72px;
+    top: 60px;
+    left: -80px;
     z-index: 2;
   }
 
   &__text {
-    width: 340px;
-    height: 140px;
-    line-height: 140px;
+    width: 330px;
+    height: 86px;
+    line-height: 86px;
     text-align: center;
+    color: var(--white);
     background: url("/media/bg/clue-text-bg.png") no-repeat center;
     background-size: contain;
   }
