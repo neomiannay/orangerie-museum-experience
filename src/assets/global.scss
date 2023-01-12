@@ -1,0 +1,105 @@
+/* variables */
+:root {
+  /* primary colors */
+  --blue: #2553F5;
+  --white: #ffffff;
+  --text: #13151A;
+
+  /* secondary colors */
+  --orange: #F57C25;
+  --contrast: #13151A;
+
+  /*others */
+  --outline: #A0A0A0;
+}
+
+/* fonts */
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("Montserrat"), url("/fonts/Montserrat-Regular.woff2") format("woff2"), url("/fonts/Montserrat-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
+  src: local("Montserrat"), url("/fonts/Montserrat-Medium.woff2") format("woff2"), url("/fonts/Montserrat-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Peabecki";
+  font-style: normal;
+  font-display: auto;
+  src: local("peabecki"), url("/fonts/peabecki.woff2") format("woff2"), url("/fonts/peabecki.woff") format("woff");
+}
+
+/* reset css */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+html {
+  background-image: url("/media/bg/background-img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+#app {
+  font-family: "Montserrat";
+  font-weight: 400;
+  color: black;
+  max-width: 480px;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Peabecki";
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  font-family: "Peabecki";
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+p {
+  font-family: "Montserrat";
+  font-size: 15px;
+  font-weight: 400;
+
+  &.secondary {
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+
+    @media screen and (max-width: 390px) {
+      font-size: 12px;
+      letter-spacing: .5px;
+    }
+  }
+
+  // @media screen and (max-width: 390px) {
+  //   font-size: 12px;
+  //   letter-spacing: .5px;
+  // }
+}
