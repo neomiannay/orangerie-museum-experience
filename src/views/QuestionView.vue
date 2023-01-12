@@ -118,7 +118,7 @@ header {
   &__img {
     position: absolute;
     left: 0;
-    top: 36px;
+    top: 80px;
   }
 }
 
