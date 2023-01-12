@@ -12,8 +12,8 @@
             <img src="/media/polaroid/container.png" alt="polaroid">
         </div>
 
-        <button @click="animation">start animation</button><br>
-        <button @click="start">start experience</button>
+        <button @click="animation" class="next-button">Click to print !</button><br>
+        <button @click="start" class="next-button">start experience</button>
 
         <div id="log"></div>
         <div id="test"></div>
@@ -161,6 +161,19 @@ function animation() {
         100% {
             transform: translateY(50%);
         }
+    }
+
+    .next-button {
+        font-family: 'Peabecki';
+        color: #000;
+        font-size: 2rem;
+        text-align: center;
+        text-decoration: none;
+        width: 352px;
+        height: 144px;
+        line-height: 144px;
+        background: url("/media/bg/button-paper-bg.png") no-repeat center;
+        background-size: cover;
     }
 
 </style>

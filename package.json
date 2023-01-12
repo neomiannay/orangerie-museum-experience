@@ -9,9 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/motion": "2.0.0-beta.12",
     "json-server": "^0.17.1",
-    "pinia": "^2.0.28",
-    "pinia-plugin-persistedstate": "^3.0.2",
     "vue": "^3.2.45",
     "vue-router": "4",
     "vue3-mobile-detection": "^1.0.5",
