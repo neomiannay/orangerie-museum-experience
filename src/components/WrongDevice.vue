@@ -6,7 +6,10 @@
                 <img src="/media/doodles/traits.svg" alt="">
             </div>
             <div class="content-text">
-                <h1>Oops...</h1>
+                <div class="text-el">
+                    <h1>Oops...</h1>
+                    <img src="/media/doodles/scribble-blue.svg" alt="">
+                </div>
                 <p>Seems like you’re on the wrong device!</p>
                 <p>Try again from a cell phone or tablet ! </p>
             </div>
@@ -70,18 +73,23 @@
     .content-text{
         width: 100%;
         margin: 1rem;
-        h1{
+
+        .text-el{
             position: relative;
             width: fit-content;
-            font-size: 2.5rem;
-            margin-bottom: clamp(1rem, 4vw, 3rem);
 
-            &::after{
-                content: url("/media/doodles/scribble-blue.svg");
-                width: 100%;
+            h1{
+                position: relative;
+                width: fit-content;
+                font-size: 2.5rem;
+                margin-bottom: clamp(1rem, 4vw, 3rem);
+            }
+
+            img{
                 position: absolute;
                 top: 3rem;
                 right: 0;
+                width: 100%;
             }
         }
 
