@@ -53,13 +53,15 @@ export default {
       this.painting = paintings.paintings.find((painting) => painting.id === this.id);
     }
     if (parseInt(this.id) === 1) {
+      let overlay = document.querySelector(".overlay");
+      let footerText = document.querySelector(".footer__text");
       setTimeout(() => {
-        let overlay = document.querySelector(".overlay");
+          overlay.classList.add("overlay--after");
+          footerText.classList.add("footer__text--after");
+        }, 2000);
+      setTimeout(() => {
         overlay.style.display = "none";
-
-        let footerText = document.querySelector(".footer__text");
-        footerText.style.color = "black";
-      }, 5000);
+      }, 3000);
     } else {
       let footerText = document.querySelector(".footer__text");
       footerText.style.color = "black";
@@ -179,6 +181,11 @@ header {
   &__text {
     font-family: "Peabecki", sans-serif;
     color: white;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &__text--after {
+    color: black;
   }
 
   .button-scan {
@@ -199,5 +206,10 @@ header {
   background: #000;
   opacity: 0.6;
   z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
+.overlay--after {
+  opacity: 0;
 }
 </style>
