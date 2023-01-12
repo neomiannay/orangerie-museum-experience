@@ -5,7 +5,7 @@
         <p class="progression__number">0{{ id }}/09</p>
         <img :src="'/media/anecdote/' + id + '/progression.png'" alt="" class="progression__img">
       </div>
-      <button class="button-map"></button>
+      <button @click="toggleMap" class="button-map"></button>
     </header>
 
     <div class="clue">
@@ -26,8 +26,14 @@
 
 
   <Transition name="bounce">
-    <template v-if="show">
-      <QRCodeScanner @close="toggleScanner" :id="id" />
+    <template v-if="showScanner">
+      <QRCodeScanner @close="toggleScanner" :id="id"/>
+    </template>
+  </Transition>
+
+  <Transition name="bounce">
+    <template v-if="showMap">
+      <Map @close="toggleMap" :id="id" type='pop'/>
     </template>
   </Transition>
 </template>
@@ -35,16 +41,18 @@
 <script>
 import QRCodeScanner from "../components/QRCodeScanner.vue";
 import paintings from "../../data/db.json"
+import Map from "../components/Map.vue"
 
 export default {
   name: "QuestionView",
   components: {
-    QRCodeScanner,
+    QRCodeScanner, Map
   },
-  props: ["id"],
+  props: ["id", "type"],
   data() {
     return {
-      show: false,
+      showScanner: false,
+      showMap: false,
       painting: null,
     };
   },
@@ -70,7 +78,10 @@ export default {
 
   methods: {
     toggleScanner() {
-      this.show = !this.show;
+      this.showScanner = !this.showScanner;
+    },
+    toggleMap() {
+      this.showMap = !this.showMap;
     },
   },
 };
@@ -124,7 +135,7 @@ header {
   &__img {
     position: absolute;
     left: 0;
-    top: 36px;
+    top: 80px;
   }
 }
 
