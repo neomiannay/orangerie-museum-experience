@@ -18,7 +18,7 @@
 
         <button @click="start" class="next-button">Click to print</button>
 
-        <!-- <div id="log"></div> -->
+        <div id="log"></div>
 
         <div class="phone-wiggle">
             <img src="/media/polaroid/icon-phone.png" alt="phone image">
@@ -31,10 +31,6 @@
             </svg>
         </div>
 
-        <!-- <router-link :to="'/anecdote/' + nextPage" class="next-page">
-            Continue
-        </router-link>   -->
-
     </div>
     <div v-else>
         <p>Loading...</p>
@@ -43,6 +39,7 @@
 
 <script>
 import paintings from "../../data/db.json"
+import router from "../router";
 
 export default {
     props: ['id'],
@@ -60,84 +57,82 @@ export default {
         }
     },
     methods: {
-        
         setPageNumber() {
             this.nextPage = parseInt(this.id)
         },
-        revealPainting() {
-            const painting = document.querySelector('.img div');
-            painting.style.animation = 'opacity-3 1s ease-in-out forwards';
+        deviceOrientationPermission() {
+
+            return new Promise((resolve, reject) => {
+                if (typeof DeviceOrientationEvent.requestPermission === "function") {
+                    DeviceOrientationEvent.requestPermission()
+                    .then((permissionState) => {
+                        if (permissionState === "granted") {
+                            resolve("granted");
+                        }
+                    })
+                    .catch(reject);
+                } else {
+                    if (navigator.userAgent.indexOf("Mobile") === -1) {
+                        reject("Not a mobile device");
+                    }
+                    resolve("granted"); // we suppose it's automatically granted (android)
+                }
+            });
         },
-    }
-}
-</script>
+        start() {
 
-<script setup>
+            if (!window.DeviceOrientationEvent) {
+                alert("device orientation not available on your device");
+                return;
+            }
 
-function deviceOrientationPermission() {
-    return new Promise((resolve, reject) => {
-        if (typeof DeviceOrientationEvent.requestPermission === "function") {
-            DeviceOrientationEvent.requestPermission()
-            .then((permissionState) => {
-                document.getElementById("log").innerHTML = permissionState;
-                if (permissionState === "granted") {
-                    resolve("granted");
+            this.deviceOrientationPermission()
+            .then((result) => {
+                if (result === "granted") {
+
+                const polaroid = document.querySelector('.img');
+                polaroid.style.animation = 'goDown 3s ease-in-out forwards';
+
+                const phone = document.querySelector('.phone-wiggle img');
+                phone.style.animation = 'wiggle 1s ease-in-out alternate infinite';
+                phone.style.animationDelay = '3s';
+                const title = document.querySelector('.img h2');
+                title.style.animation = 'opacity 2s ease-in-out forwards';
+                const painting = document.querySelector('.img div');
+                
+
+                window.addEventListener("devicemotion", (event) => {
+                    const x = event.acceleration.x;
+
+                    const top = document.querySelector('.top');
+                    const bottom = document.querySelector('.phone-wiggle');
+
+                    if (x > 20) {
+                        painting.style.animation = 'opacity 1s ease-in-out forwards';
+
+                        setTimeout(() => {
+                            top.classList.add('opacity');
+                            bottom.classList.add('opacity');
+                        }, 1500);
+
+                        setTimeout(() => {
+                            top.style.display = 'none';
+                            bottom.style.display = 'none';
+                        }, 2000);
+
+                        setTimeout(() => {
+                            router.push({ name: 'anecdote', params: { id: this.nextPage } });
+                        }, 2500);
+                    }
+                });
                 }
             })
-            .catch(reject);
-        } else {
-            if (navigator.userAgent.indexOf("Mobile") === -1) {
-                reject("Not a mobile device");
-            }
-            resolve("granted"); // we suppose it's automatically granted (android)
+            .catch((err) => {
+                alert(err.toString());
+            });
         }
-    });
-}
-
-function start() {
-
-    if (!window.DeviceOrientationEvent) {
-        alert("device orientation not available on your device");
-        return;
     }
-
-    deviceOrientationPermission()
-    .then((result) => {
-        if (result === "granted") {
-
-        const polaroid = document.querySelector('.img');
-        polaroid.style.animation = 'goDown 3s ease-in-out forwards';
-
-        const phone = document.querySelector('.phone-wiggle img');
-        phone.style.animation = 'wiggle 1s ease-in-out alternate infinite';
-        phone.style.animationDelay = '3s';
-        const title = document.querySelector('.img h2');
-        title.style.animation = 'opacity 2s ease-in-out forwards';
-        const painting = document.querySelector('.img div');
-        // painting.style.animation = 'opacity-2 .5s ease-in-out alternate infinite';
-        
-
-        window.addEventListener("devicemotion", (event) => {
-            const x = event.acceleration.x;
-
-            if (x > 20) {
-                painting.style.animation = 'opacity 1s ease-in-out forwards';
-                
-                const top = document.querySelector('.top');
-                const bottom = document.querySelector('.phone-wiggle');
-
-                setTimeout(() => {
-                    bottom.style.animation = 'leave-bottom .5s ease-in-out forwards';
-                }, 1500);
-            }
-        });
-        }
-    })
-    .catch((err) => {
-        alert(err.toString());
-    });
 }
-
 </script>
 
 <style lang="scss">
@@ -154,7 +149,7 @@ function start() {
     .top {
         position: absolute;
         width: 100%;
-        transition: all 1s ease-in-out;
+        transition: all .5s ease-in-out;
         img {
             position: absolute;
             width: 100%;
@@ -225,10 +220,10 @@ function start() {
 
     .phone-wiggle {
         position: absolute;
-        bottom: 10%;
+        bottom: 5%;
         display: flex;
         width: 100%;
-        transform: translateY(0%);
+        transition: all .5s ease-in-out;
         img {
             margin: auto;
             width: 20%;
@@ -302,6 +297,10 @@ function start() {
         100% {
             transform: translateY(400%);
         }
+    }
+
+    .opacity {
+        opacity: 0;
     }
     
 </style>
