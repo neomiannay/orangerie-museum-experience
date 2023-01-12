@@ -3,9 +3,11 @@
     <router-link to="/">HomeView</router-link> |
     <router-link :to="{ name: 'painting', params: { id: '1'} }">AboutView</router-link>
   </nav> -->
-  <router-view v-if="isMobile()" v-slot="{ Component }">
+  <router-view v-if="isMobile()" v-slot="{ Component, route }">
     <transition name="route" mode="out-in">
-      <component :is="Component"></component>
+      <div :key="route.fullPath">  
+        <component :is="Component"></component>
+      </div>
     </transition>
   </router-view>
   <div v-else>T'es pas sur ton tel mon reuf</div>
