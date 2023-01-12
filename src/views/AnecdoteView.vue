@@ -68,19 +68,18 @@ export default {
             const topContent = document.getElementById("topContent");
             const ctx = canvas.getContext("2d");
 
+
+            const frameCount = 56
+            // if(this.id === 1){
+            //     frameCount = 43
+            // } else if(this.id === 2){
+            //     frameCount = 56
+            // } else if(this.id === 3){
+            //     frameCount = 53
+            // }
             const currentFrame = index => (
-                `/media/anecdote/3/animation/bride${index.toString().padStart(3, '0')}.png`
+                `/media/anecdote/${this.id}/animation/anim${index.toString().padStart(2, '0')}.png`
             )
-
-            const frameCount = 100
-
-            canvas.height = window.innerHeight;
-            canvas.width = window.innerWidth;
-            const img = new Image();
-            img.src = currentFrame(1)
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            }
 
             const preloadImages = () => {
                 for (let i = 1; i < frameCount; i++) {
@@ -88,7 +87,14 @@ export default {
                     img.src = currentFrame(i)
                 }
             }
-            preloadImages()
+
+            const img = new Image();
+            img.src = currentFrame(0)
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
 
             const updateImage = index => {
                 img.src = currentFrame(index)
@@ -103,13 +109,9 @@ export default {
                 const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
 
                 requestAnimationFrame(() => updateImage(frameIndex + 1))
-
-                // detect the end of the scroll
-                // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                // }
             });
 
-
+            preloadImages()
         }
     }
 }
