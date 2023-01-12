@@ -18,7 +18,7 @@
 
         <button @click="start" class="next-button">Click to print</button>
 
-        <div id="log"></div>
+        <!-- <div id="log"></div> -->
 
         <div class="phone-wiggle">
             <img src="/media/polaroid/icon-phone.png" alt="phone image">
@@ -225,10 +225,9 @@ function start() {
 
     .phone-wiggle {
         position: absolute;
-        bottom: 0;
+        bottom: 10%;
         display: flex;
         width: 100%;
-        margin-bottom: 10%;
         transform: translateY(0%);
         img {
             margin: auto;
