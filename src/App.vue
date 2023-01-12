@@ -14,11 +14,16 @@
 </template>
 
 <script>
-import { useMobileDetection } from "vue3-mobile-detection";
 
 export default {
   setup() {
-    const { isMobile } = useMobileDetection();
+    const isMobile = () => {
+      if (window.innerWidth <= 480) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     return { isMobile };
   }
 };
