@@ -162,10 +162,8 @@ section {
         transform: translateY(150px) scale(1.5); */
 
         margin-left: auto;
-        width: 90%;
-        height: max-content;
-        
-
+        width: auto;
+        height: 150%;
     }
 
     .signature-img {
