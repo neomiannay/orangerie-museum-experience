@@ -1,5 +1,9 @@
 <template>
   <div class="start">
+    <header v-if="pageType == 'start'">
+      <button @click="toggleMap" class="button-map"></button>
+    </header>
+
     <div class="container">
       <div class="doodleWrapper">
         <img class="bubbleSVG" src="/media/bg/bubble.svg" alt="bubble">
@@ -45,17 +49,28 @@
     </div>
     <img src="/media/mascotte/mascotte.gif" alt="mascotte" class="mascotte" />
   </div>
+
+  <Transition name="bounce">
+    <template v-if="showMap">
+      <Map @close="toggleMap" :id="id" type='pop'/>
+    </template>
+  </Transition>
 </template>
 
 <script>
 import paintings from "../../data/db.json"
+import Map from "../components/Map.vue"
 
 export default {
+  components: {
+    Map
+  },
   props: ['id', 'pageType'],
   data() {
     return {
       nextPage: 0,
       painting: null,
+      showMap: false,
     };
   },
   mounted() {
@@ -76,19 +91,39 @@ export default {
       } else if (this.pageType === 'start') {
         this.nextPage = this.id;
       }
-    }
+    },
+    toggleMap() {
+      this.showMap = !this.showMap;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
+@use "../assets/transitions/bounce.scss";
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+
+  .button-map {
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+    background: url("/media/icons/map.png") no-repeat;
+    background-size: contain;
+  }
+}
 .start {
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
+  position: absolute;
 }
 
 .container {

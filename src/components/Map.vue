@@ -2,7 +2,7 @@
     <div class="MapViewContainer">
         <Header title="The map"></Header>
 
-        <router-link v-if="type === 'page'" :to="'/start/' + nextPage">
+        <router-link v-if="type === 'page'" :to="'/talking/start/' + nextPage">
             <img class="close" src="/media/icons/close.png" alt="close page">
         </router-link>
 

@@ -8,7 +8,7 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/:pageType/:id?',
+    path: '/talking/:pageType/:id?',
     name: 'talking',
     component: () => import('../views/TalkingView.vue'),
     props: true
