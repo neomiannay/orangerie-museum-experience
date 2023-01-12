@@ -11,7 +11,7 @@
     <div class="clue">
       <h2 class="clue__title">Clue #1</h2>
       <img src="/media/doodles/spiral.svg" alt="" class="clue__spiral" />
-      <p class="clue__text">{{ this.painting?.clue}}</p>
+      <p class="clue__text">{{ this.painting?.clue }}</p>
       <img src="/media/doodles/traits.svg" alt="" class="clue__traits" />
     </div>
 
@@ -20,11 +20,14 @@
       <img src="/media/doodles/arrow-down.svg" alt="" class="footer__img" />
       <button @click="toggleScanner" class="button-scan"></button>
     </div>
+    <div v-if="id === '1'" class="overlay"></div>
   </div>
+
+
 
   <Transition name="bounce">
     <template v-if="show">
-      <QRCodeScanner @close="toggleScanner" :id="id"/>
+      <QRCodeScanner @close="toggleScanner" :id="id" />
     </template>
   </Transition>
 </template>
@@ -46,8 +49,20 @@ export default {
     };
   },
   mounted() {
-    if(paintings) {
+    if (paintings) {
       this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+    }
+    if (parseInt(this.id) === 1) {
+      setTimeout(() => {
+        let overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
+
+        let footerText = document.querySelector(".footer__text");
+        footerText.style.color = "black";
+      }, 5000);
+    } else {
+      let footerText = document.querySelector(".footer__text");
+      footerText.style.color = "black";
     }
   },
 
@@ -153,14 +168,17 @@ header {
 }
 
 .footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  z-index: 3;
 
   &__text {
     font-family: "Peabecki", sans-serif;
+    color: white;
   }
 
   .button-scan {
@@ -170,5 +188,16 @@ header {
     background-size: 80px;
     cursor: pointer;
   }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+  z-index: 2;
 }
 </style>
