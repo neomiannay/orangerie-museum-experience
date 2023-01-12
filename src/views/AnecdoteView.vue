@@ -16,8 +16,7 @@
                 <img class="artist-img" :src="'/media/anecdote/' + id + '/artist.gif'" alt="Derain">
                 <img class="signature-img" :src="'/media/anecdote/' + id + '/signature.png'"
                     alt="Signature from Derain">
-            </div>
-                
+            </div>  
         </section>
         <section class="container" id="container">
             <canvas class="scroll-animation"></canvas>
@@ -153,13 +152,18 @@ section {
     height: 50%;
     bottom: 0;
     width: 100%;
+    display: flex;
 
     .artist-img {
-        position: absolute;
+        /* position: absolute;
         right: 30px;
         z-index: 10;
         height: 100%;
-        transform: translateY(150px) scale(1.5);
+        transform: translateY(150px) scale(1.5); */
+
+        margin-left: auto;
+        width: auto;
+        height: 150%;
     }
 
     .signature-img {

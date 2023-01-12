@@ -64,7 +64,6 @@ html {
   font-weight: 400;
   color: black;
   max-width: 480px;
-  margin: auto;
 }
 
 h1 {
@@ -91,5 +90,15 @@ p {
     font-size: 15px;
     font-weight: 500;
     color: var(--white);
+
+    @media screen and (max-width: 390px) {
+      font-size: 12px;
+      letter-spacing: .5px;
+    }
   }
+
+  // @media screen and (max-width: 390px) {
+  //   font-size: 12px;
+  //   letter-spacing: .5px;
+  // }
 }

@@ -1,22 +1,29 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">HomeView</router-link> |
-    <router-link :to="{ name: 'painting', params: { id: '1'} }">AboutView</router-link>
-  </nav> -->
-  <router-view v-if="isMobile()" v-slot="{ Component }">
+  <router-view v-if="isMobile()" v-slot="{ Component, route }">
     <transition name="route" mode="out-in">
-      <component :is="Component"></component>
+      <div :key="route.fullPath">  
+        <component :is="Component"></component>
+      </div>
     </transition>
   </router-view>
-  <div v-else>T'es pas sur ton tel mon reuf</div>
+  <div v-else>
+    <WrongDevice />
+  </div>
 </template>
 
 <script>
-import { useMobileDetection } from "vue3-mobile-detection";
+import WrongDevice from "./components/WrongDevice.vue";
 
 export default {
+  components: { WrongDevice },
   setup() {
-    const { isMobile } = useMobileDetection();
+    const isMobile = () => {
+      if (window.innerWidth <= 480) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     return { isMobile };
   }
 };

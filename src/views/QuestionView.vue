@@ -5,13 +5,13 @@
         <p class="progression__number">0{{ id }}/09</p>
         <img :src="'/media/anecdote/' + id + '/progression.png'" alt="" class="progression__img">
       </div>
-      <button class="button-map"></button>
+      <button @click="toggleMap" class="button-map"></button>
     </header>
 
     <div class="clue">
       <h2 class="clue__title">Clue #1</h2>
       <img src="/media/doodles/spiral.svg" alt="" class="clue__spiral" />
-      <p class="clue__text">{{ this.painting?.clue}}</p>
+      <p class="clue__text">{{ this.painting?.clue }}</p>
       <img src="/media/doodles/traits.svg" alt="" class="clue__traits" />
     </div>
 
@@ -20,11 +20,20 @@
       <img src="/media/doodles/arrow-down.svg" alt="" class="footer__img" />
       <button @click="toggleScanner" class="button-scan"></button>
     </div>
+    <div v-if="id === '1'" class="overlay"></div>
   </div>
 
+
+
   <Transition name="bounce">
-    <template v-if="show">
+    <template v-if="showScanner">
       <QRCodeScanner @close="toggleScanner" :id="id"/>
+    </template>
+  </Transition>
+
+  <Transition name="bounce">
+    <template v-if="showMap">
+      <Map @close="toggleMap" :id="id" type='pop'/>
     </template>
   </Transition>
 </template>
@@ -32,28 +41,47 @@
 <script>
 import QRCodeScanner from "../components/QRCodeScanner.vue";
 import paintings from "../../data/db.json"
+import Map from "../components/Map.vue"
 
 export default {
   name: "QuestionView",
   components: {
-    QRCodeScanner,
+    QRCodeScanner, Map
   },
-  props: ["id"],
+  props: ["id", "type"],
   data() {
     return {
-      show: false,
+      showScanner: false,
+      showMap: false,
       painting: null,
     };
   },
   mounted() {
-    if(paintings) {
+    if (paintings) {
       this.painting = paintings.paintings.find((painting) => painting.id === this.id);
+    }
+    if (parseInt(this.id) === 1) {
+      let overlay = document.querySelector(".overlay");
+      let footerText = document.querySelector(".footer__text");
+      setTimeout(() => {
+          overlay.classList.add("overlay--after");
+          footerText.classList.add("footer__text--after");
+        }, 2000);
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 3000);
+    } else {
+      let footerText = document.querySelector(".footer__text");
+      footerText.style.color = "black";
     }
   },
 
   methods: {
     toggleScanner() {
-      this.show = !this.show;
+      this.showScanner = !this.showScanner;
+    },
+    toggleMap() {
+      this.showMap = !this.showMap;
     },
   },
 };
@@ -107,41 +135,41 @@ header {
   &__img {
     position: absolute;
     left: 0;
-    top: 36px;
+    top: 80px;
   }
 }
 
 .clue {
   display: grid;
-  grid-template-rows: repeat(10, 20px);
+  grid-template-rows: repeat(4, 20px);
   grid-template-columns: 100%;
   justify-items: center;
   align-items: center;
 
   &__title {
-    width: 140px;
-    height: 64px;
-    line-height: 64px;
-    color: var(--white);
+    width: 164px;
+    height: 72px;
+    line-height: 72px;
+    font-size: 1rem;
     z-index: 1;
     text-align: center;
     background: url("/media/bg/clue-title-bg.png") no-repeat center;
     background-size: contain;
-    grid-row: 1 / 4;
   }
 
   &__spiral {
     position: relative;
-    top: -20px;
-    left: 72px;
+    top: 60px;
+    left: -80px;
     z-index: 2;
   }
 
   &__text {
-    width: 340px;
-    height: 140px;
-    line-height: 140px;
+    width: 330px;
+    height: 86px;
+    line-height: 86px;
     text-align: center;
+    color: var(--white);
     background: url("/media/bg/clue-text-bg.png") no-repeat center;
     background-size: contain;
   }
@@ -153,14 +181,22 @@ header {
 }
 
 .footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  z-index: 3;
 
   &__text {
     font-family: "Peabecki", sans-serif;
+    color: white;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &__text--after {
+    color: black;
   }
 
   .button-scan {
@@ -170,5 +206,21 @@ header {
     background-size: 80px;
     cursor: pointer;
   }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+  z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
+.overlay--after {
+  opacity: 0;
 }
 </style>

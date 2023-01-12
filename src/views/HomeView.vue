@@ -11,7 +11,7 @@ export default {
   name: 'HomeView',
   mounted() {
     setTimeout(() => {
-      this.$router.push('/intro')
+      this.$router.push('/talking/intro')
     }, 4000)
   }
 }
