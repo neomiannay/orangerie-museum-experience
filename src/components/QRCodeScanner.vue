@@ -5,7 +5,7 @@
       <Transition name="bounce">
         <template v-if="this.error == true">
           <div class="response">
-            <img src="media/retry.png" alt="error" class="response__img" />
+            <img src="/media/hands/retry.png" alt="error" class="response__img" />
           </div>
         </template>
       </Transition>
@@ -13,7 +13,7 @@
       <Transition name="bounce">
         <template v-if="this.error == false">
           <div class="response">
-            <img src="media/gg.png" alt="scan" class="response__img" />
+            <img src="/media/hands/gg.png" alt="scan" class="response__img" />
           </div>
         </template>
       </Transition>
@@ -24,10 +24,13 @@
 
 <script>
 import { QrcodeStream } from "vue3-qrcode-reader";
+import router from "../router";
 
 export default {
   name: "QRCodeScanner",
   components: { QrcodeStream },
+
+  props: ["id"],
 
   data() {
     return {
@@ -69,10 +72,10 @@ export default {
       this.error = null;
       this.decodedString = decodedString;
 
-      if (this.decodedString == "http://en.m.wikipedia.org") {
+      if (this.decodedString == this.id) {
         this.error = false;
         setTimeout(() => {
-          window.location.replace(decodedString);
+          router.push({ name: "polaroid", params: { id: this.id } });
         }, 2000);
       } else {
         this.error = true;

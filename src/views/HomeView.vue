@@ -9,6 +9,10 @@
 
 export default {
   name: 'HomeView',
-  components: {}
+  mounted() {
+    setTimeout(() => {
+      this.$router.push('/talking/intro')
+    }, 4000)
+  }
 }
 </script>
