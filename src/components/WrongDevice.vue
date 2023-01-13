@@ -14,7 +14,7 @@
                 <p>Try again from a cell phone or tablet ! </p>
             </div>
         </section>
-        <img class="stars" src="/media/doodles/big-stars.svg" alt="">
+        <img class="stars" src="/media/doodles/big-stars-2.svg" alt="">
     </main>
 </template>
 

@@ -25,7 +25,7 @@
                 Continue
             </router-link>
             <router-link v-else :to="'/talking/final'" class="next-button">
-                Continue
+                Let's go
             </router-link>
         </section>
     </div>
@@ -149,15 +149,9 @@ section {
     display: flex;
 
     .artist-img {
-        /* position: absolute;
-        right: 30px;
-        z-index: 10;
-        height: 100%;
-        transform: translateY(150px) scale(1.5); */
-
         margin-left: auto;
         width: auto;
-        height: 150%;
+        height: clamp(130%, 80vw, 150%);
     }
 
     .signature-img {

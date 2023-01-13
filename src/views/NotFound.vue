@@ -21,11 +21,9 @@
 <script setup>
 import router from '../router';
 
-console.log(router);
-
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .container {
     display: flex;
     flex-direction: column;

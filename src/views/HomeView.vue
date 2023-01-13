@@ -20,14 +20,14 @@
 export default {
   name: 'HomeView',
   mounted() {
-    // setTimeout(() => {
-    //   this.$router.push('/talking/intro')
-    // }, 4000)
+    setTimeout(() => {
+      this.$router.push('/talking/intro')
+    }, 3000)
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .home {
   display: flex;
   justify-content: center;
