@@ -13,7 +13,7 @@
       </div>
       <div class="bubble">
         <!-- if the current page is "intro" -->
-        <div class="bubble__text bubble__text--intro" v-if="pageType == 'intro'">
+        <div class="bubble__text bubble__text--intro" v-if="pageType == 'intro'" v-motion-slide-bottom :delay="200">
           <p class="secondary">
             Hi there,<br />
             welcome to the Orangerie!
@@ -30,17 +30,38 @@
           </p>
         </div>
 
+        <!-- if the current page is "final" -->
+        <div class="bubble__text bubble__text--intro" v-if="pageType == 'final'" v-motion-slide-bottom :delay="200">
+          <p class="secondary">
+            Good job!<br />
+            What a wonderful wedding!
+          </p>
+          <p class="secondary">
+            It's all thanks to you!
+          </p>
+          <p class="secondary">
+            We hope you enjoyed
+            your time with us!<br />
+          </p>
+          <p class="secondary">
+            To thank you,
+            you can choose one reward!
+          </p>
+        </div>
+
         <!-- if the current page is the anecdote's start page -->
-        <div class="bubble__text" v-if="pageType == 'start'">
+        <div class="bubble__text" v-if="pageType == 'start'" v-motion-slide-bottom :delay="200">
           <p class="secondary" v-for="txt in this.painting?.startText" :key="txt.key">
             {{ txt }}
           </p>
         </div>
 
         <!-- <button class="bubble__next"> -->
-        <router-link v-if="pageType === 'intro'" :to="'/map/' + nextPage" class="bubble__next">
+        <router-link v-if="pageType === 'intro'" :to="'/map/' + nextPage" class="bubble__next" v-motion-slide-bottom :delay="500">
         </router-link>
-        <router-link v-else="pageType === 'start'" :to="'/question/' + nextPage" class="bubble__next">
+        <router-link v-if="pageType === 'final'" to="/rewards" class="bubble__next" v-motion-slide-bottom :delay="500">
+        </router-link>
+        <router-link v-else="pageType === 'start'" :to="'/question/' + nextPage" class="bubble__next" v-motion-slide-bottom :delay="500">
         </router-link>
 
 
@@ -52,7 +73,7 @@
 
   <Transition name="bounce">
     <template v-if="showMap">
-      <Map @close="toggleMap" :id="id" type='pop'/>
+      <Map @close="toggleMap" :id="id" type='pop' />
     </template>
   </Transition>
 </template>
@@ -101,6 +122,8 @@ export default {
 
 <style scoped lang="scss">
 @use "../assets/transitions/bounce.scss";
+@use "../assets/animations/spin.scss";
+@use "../assets/animations/move.scss";
 
 header {
   position: fixed;
@@ -117,6 +140,7 @@ header {
     background-size: contain;
   }
 }
+
 .start {
   height: 100vh;
   width: 100vw;
@@ -230,50 +254,6 @@ header {
 }
 
 /* Animations */
-@keyframes move {
-  0% {
-    transform: rotate(-2deg);
-  }
-
-  50% {
-    transform: rotate(2deg);
-  }
-}
-
-@keyframes spin {
-  12% {
-    transform: rotate(45deg);
-  }
-
-  24% {
-    transform: rotate(90deg);
-  }
-
-  36% {
-    transform: rotate(135deg);
-  }
-
-  48% {
-    transform: rotate(180deg);
-  }
-
-  60% {
-    transform: rotate(225deg);
-  }
-
-  72% {
-    transform: rotate(270deg);
-  }
-
-  84% {
-    transform: rotate(315deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes next {
   0% {
     transform: rotate(-15deg);

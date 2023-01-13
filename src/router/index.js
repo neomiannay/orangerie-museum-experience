@@ -38,9 +38,19 @@ const routes = [
     props: true
   },
   {
-    path: '/final',
-    name: 'final',
-    component: () => import('../views/FinalView.vue'),
+    path: '/rewards',
+    name: 'rewards',
+    component: () => import('../views/RewardsView.vue'),
+  },
+  {
+    path: '/sweets',
+    name: 'sweets',
+    component: () => import('../views/SweetsView.vue'),
+  },
+  {
+    path: '/discount',
+    name: 'discount',
+    component: () => import('../views/DiscountView.vue'),
   },
   {
     path: '/:catchAll(.*)',

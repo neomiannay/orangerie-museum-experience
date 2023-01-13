@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <header>
+    <header v-motion-pop :delay="400">
       <div class="progression">
         <p class="progression__number">0{{ id }}/09</p>
         <img :src="'/media/anecdote/' + id + '/progression.png'" alt="" class="progression__img">
@@ -8,14 +8,14 @@
       <button @click="toggleMap" class="button-map"></button>
     </header>
 
-    <div class="clue">
+    <div class="clue" v-motion-pop :delay="500">
       <h2 class="clue__title">Clue #1</h2>
       <img src="/media/doodles/spiral.svg" alt="" class="clue__spiral" />
       <p class="clue__text">{{ this.painting?.clue }}</p>
       <img src="/media/doodles/traits.svg" alt="" class="clue__traits" />
     </div>
 
-    <div class="footer">
+    <div class="footer" v-motion-pop :delay="600">
       <p class="footer__text">Tap here to scan a painting</p>
       <img src="/media/doodles/arrow-down.svg" alt="" class="footer__img" />
       <button @click="toggleScanner" class="button-scan"></button>
@@ -89,6 +89,8 @@ export default {
 
 <style scoped lang="scss">
 @use "../assets/transitions/bounce.scss";
+@use "../assets/animations/spin.scss";
+@use "../assets/animations/move.scss";
 
 .question {
   height: 100%;
@@ -145,6 +147,8 @@ header {
   grid-template-columns: 100%;
   justify-items: center;
   align-items: center;
+  margin-top: 40px;
+  z-index: 1;
 
   &__title {
     width: 164px;
@@ -162,6 +166,8 @@ header {
     top: 60px;
     left: -80px;
     z-index: 2;
+    animation: spin 8s infinite;
+    animation-timing-function: steps(2, end);
   }
 
   &__text {
@@ -169,6 +175,7 @@ header {
     height: 86px;
     line-height: 86px;
     text-align: center;
+    font-size: 1.125rem;
     color: var(--white);
     background: url("/media/bg/clue-text-bg.png") no-repeat center;
     background-size: contain;
@@ -177,6 +184,7 @@ header {
   &__traits {
     width: 88px;
     grid-row: 7 / 11;
+    animation: move 0.5s infinite;
   }
 }
 
