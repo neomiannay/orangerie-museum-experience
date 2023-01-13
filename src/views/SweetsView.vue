@@ -12,7 +12,7 @@
             <!-- <button class="button">
                 Restart
             </button> -->
-            <router-link v-motion-pop :delay="600" to="/talking/intro" class="button">
+            <router-link v-motion-pop :delay="600" to="/" class="button">
                 Restart
             </router-link>
 

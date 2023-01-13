@@ -10,7 +10,7 @@
             <img class="star star-2" src="/media/doodles/back-star-2.svg" alt="">
         </div>
         <div class="button-wrapper">
-            <router-link :to="'/talking/start/1'" class="next-button">
+            <router-link :to="'/'" class="next-button">
                 Go back!
             </router-link>
             <img class="back" src="/media/doodles/back.svg" alt="">
@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import router from '../router';
-
 </script>
 
 <style scoped lang="scss">
