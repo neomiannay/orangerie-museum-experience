@@ -33,6 +33,8 @@ export default {
 
 <style scoped lang="scss">
 @use "../assets/animations/move.scss";
+@use "../assets/animations/scale.scss";
+
 .container {
     display: flex;
     flex-direction: column;
@@ -52,6 +54,7 @@ export default {
 
     &__img {
         width: 65%;
+        animation: scale 1s ease-in-out infinite alternate;animation-delay: 0.5s;
     }
 
     &__bg {
@@ -79,6 +82,8 @@ export default {
     &__img {
         width: 90%;
         padding-top: 20px;
+        animation: scale 1s ease-in-out infinite;
+        animation-iteration-count: infinite;
     }
 
     &__bg {
