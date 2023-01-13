@@ -3,19 +3,19 @@
     <div>
         <!-- header here -->
         <section id="topContent">
-            <Header :title="this.painting?.anecdoteTitle"></Header>
+            <Header :title="this.painting?.anecdoteTitle" v-motion-slide-bottom :delay="300"></Header>
             <div
                 class="anecdote-text"
             >
-                <p>{{ this.painting?.anecdote[0] }}</p>
-                <p>{{ this.painting?.anecdote[1] }}
+                <p v-motion-slide-bottom :delay="400">{{ this.painting?.anecdote[0] }}</p>
+                <p v-motion-slide-bottom :delay="500">{{ this.painting?.anecdote[1] }}
                     <span>{{ this.painting?.anecdote[2] }}<img src="/media/doodles/scratch.svg" alt=""></span>
                 </p>
             </div>
             <div class="artist-content">
-                <img class="artist-img" :src="'/media/anecdote/' + id + '/artist.gif'" alt="Derain">
+                <img class="artist-img" :src="'/media/anecdote/' + id + '/artist.gif'" alt="Derain" v-motion-slide-bottom :delay="600">
                 <img class="signature-img" :src="'/media/anecdote/' + id + '/signature.png'"
-                    alt="Signature from Derain">
+                    alt="Signature from Derain"  v-motion-slide-bottom :delay="700">
             </div>  
         </section>
         <section class="container" id="container">
@@ -24,7 +24,7 @@
             <router-link v-if="nextPage < lastPage" :to="'/map/' + nextPage" class="next-button">
                 Continue
             </router-link>
-            <router-link v-else :to="'/final'" class="next-button">
+            <router-link v-else :to="'/talking/final'" class="next-button">
                 Continue
             </router-link>
         </section>

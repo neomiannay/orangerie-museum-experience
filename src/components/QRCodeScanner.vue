@@ -5,7 +5,8 @@
       <Transition name="bounce">
         <template v-if="this.error == true">
           <div class="response">
-            <img src="/media/hands/retry.png" alt="error" class="response__img" />
+            <img src="/media/scanner/retry.gif" alt="error" class="response__img" />
+            <img src="/media/scanner/retry-text.png" alt="retry" class="response__text" />
           </div>
         </template>
       </Transition>
@@ -13,7 +14,8 @@
       <Transition name="bounce">
         <template v-if="this.error == false">
           <div class="response">
-            <img src="/media/hands/gg.png" alt="scan" class="response__img" />
+            <img src="/media/scanner/gg.gif" alt="gg" class="response__img" />
+            <img src="/media/scanner/gg-text.png" alt="gg" class="response__text" />
           </div>
         </template>
       </Transition>
@@ -76,12 +78,12 @@ export default {
         this.error = false;
         setTimeout(() => {
           router.push({ name: "polaroid", params: { id: this.id } });
-        }, 2000);
+        }, 3000);
       } else {
         this.error = true;
         setTimeout(() => {
           this.error = null;
-        }, 1500);
+        }, 3000);
       }
     },
 
@@ -133,12 +135,17 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   &__img {
     width: 80%;
     z-index: 10;
+  }
+  &__text {
+    z-index: 11;
+    margin-top: -40px;
   }
 }
 </style>
