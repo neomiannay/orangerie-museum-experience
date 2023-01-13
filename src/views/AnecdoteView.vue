@@ -25,7 +25,7 @@
                 Continue
             </router-link>
             <router-link v-else :to="'/final'" class="next-button">
-                Continue
+                Let's go
             </router-link>
         </section>
     </div>
@@ -65,18 +65,10 @@ export default {
             
             const container = document.documentElement;
             const canvas = document.querySelector(".scroll-animation");
-            const topContent = document.getElementById("topContent");
             const ctx = canvas.getContext("2d");
 
 
             const frameCount = 56
-            // if(this.id === 1){
-            //     frameCount = 43
-            // } else if(this.id === 2){
-            //     frameCount = 56
-            // } else if(this.id === 3){
-            //     frameCount = 53
-            // }
             const currentFrame = index => (
                 `/media/anecdote/${this.id}/animation/anim${index.toString().padStart(2, '0')}.png`
             )
