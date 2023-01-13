@@ -10,12 +10,12 @@
             <img class="close" src="/media/icons/close.png" alt="close pop" @click.self="closeMap">
         </button>
 
-        <img class="close-text" src="/media/map/close.png" alt="close">
-        <div class="floor-number-wrapper">
+        <img class="close-text" src="/media/map/close.png" alt="close" v-motion-pop :delay="600">
+        <div class="floor-number-wrapper" v-motion-pop :delay="400">
             <img class="floor-number" src="/media/map/floorNumber.png" alt="scribble">
             <img class="circle" src="/media/doodles/circles.svg" alt="line">
         </div>
-        <div class="artworksContainer">
+        <div class="artworksContainer" v-motion-pop :delay="500">
             <h2>Artworks<br>0{{ id }}/09</h2>
         </div>
         <img class="map" :src="'/media/anecdote/' + id + '/map.png'" alt="map">
