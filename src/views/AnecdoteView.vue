@@ -3,19 +3,19 @@
     <div>
         <!-- header here -->
         <section id="topContent">
-            <Header :title="this.painting?.anecdoteTitle"></Header>
+            <Header :title="this.painting?.anecdoteTitle" v-motion-slide-bottom :delay="300"></Header>
             <div
                 class="anecdote-text"
             >
-                <p>{{ this.painting?.anecdote[0] }}</p>
-                <p>{{ this.painting?.anecdote[1] }}
+                <p v-motion-slide-bottom :delay="400">{{ this.painting?.anecdote[0] }}</p>
+                <p v-motion-slide-bottom :delay="500">{{ this.painting?.anecdote[1] }}
                     <span>{{ this.painting?.anecdote[2] }}<img src="/media/doodles/scratch.svg" alt=""></span>
                 </p>
             </div>
             <div class="artist-content">
-                <img class="artist-img" :src="'/media/anecdote/' + id + '/artist.gif'" alt="Derain">
+                <img class="artist-img" :src="'/media/anecdote/' + id + '/artist.gif'" alt="Derain" v-motion-slide-bottom :delay="600">
                 <img class="signature-img" :src="'/media/anecdote/' + id + '/signature.png'"
-                    alt="Signature from Derain">
+                    alt="Signature from Derain"  v-motion-slide-bottom :delay="700">
             </div>  
         </section>
         <section class="container" id="container">
@@ -24,7 +24,7 @@
             <router-link v-if="nextPage < lastPage" :to="'/map/' + nextPage" class="next-button">
                 Continue
             </router-link>
-            <router-link v-else :to="'/final'" class="next-button">
+            <router-link v-else :to="'/talking/final'" class="next-button">
                 Continue
             </router-link>
         </section>
@@ -65,22 +65,13 @@ export default {
             
             const container = document.documentElement;
             const canvas = document.querySelector(".scroll-animation");
-            const topContent = document.getElementById("topContent");
             const ctx = canvas.getContext("2d");
 
+
+            const frameCount = 56
             const currentFrame = index => (
-                `/media/anecdote/3/animation/bride${index.toString().padStart(3, '0')}.png`
+                `/media/anecdote/${this.id}/animation/anim${index.toString().padStart(2, '0')}.png`
             )
-
-            const frameCount = 100
-
-            canvas.height = window.innerHeight;
-            canvas.width = window.innerWidth;
-            const img = new Image();
-            img.src = currentFrame(1)
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            }
 
             const preloadImages = () => {
                 for (let i = 1; i < frameCount; i++) {
@@ -88,7 +79,14 @@ export default {
                     img.src = currentFrame(i)
                 }
             }
-            preloadImages()
+
+            const img = new Image();
+            img.src = currentFrame(0)
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
 
             const updateImage = index => {
                 img.src = currentFrame(index)
@@ -103,13 +101,9 @@ export default {
                 const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
 
                 requestAnimationFrame(() => updateImage(frameIndex + 1))
-
-                // detect the end of the scroll
-                // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                // }
             });
 
-
+            preloadImages()
         }
     }
 }
